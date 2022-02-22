@@ -23,7 +23,7 @@
             <field name="view_mode">tree,form</field>
         </record>
         <menuitem id="configuration_menu" name="Configuration"
-                  parent="main_open_academy_menu"/>
+                  parent="menu_open_academy"/>
         <menuitem id="contact_menu" name="Contacts"
                   parent="configuration_menu"
                   action="contact_list_action"/>
