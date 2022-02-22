@@ -29,6 +29,7 @@
         'views/templates.xml',
         'views/course.xml',
         'views/partner.xml',
+        'views/security.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
