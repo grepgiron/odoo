@@ -156,11 +156,22 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="open_academy_session_graph_view">
+            <field name="name">open_academy.session.graph</field>
+            <field name="model">open_academy.session</field>
+            <field name="arch" type="xml">
+                <graph string="Participaciones de curso">
+                    <field name="course_id"/>
+                    <field name="attendees_count" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
 
         <record model="ir.actions.act_window" id="session_list_action">
             <field name="name">Sessions</field>
             <field name="res_model">open_academy.session</field>
-            <field name="view_mode">tree,form,calendar,gantt</field>
+            <field name="view_mode">tree,form,calendar,gantt,graph</field>
         </record>
 
         <menuitem id="session_menu" name="Sessions" parent="menu_open_academy" action="session_list_action"/>
