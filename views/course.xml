@@ -53,6 +53,7 @@
             <field name="name">Courses</field>
             <field name="res_model">open_academy.course</field>
             <field name="view_mode">tree,form</field>
+            <field name="context" eval="{'search_default_my_courses': 1}"/>
         </record>
         <menuitem id="menu_open_academy" name="OpenAcademy" sequence="10" action="action_list_course"/>
         <menuitem id="menu_course" parent="menu_open_academy" name="Courses" sequence="10" action="action_list_course"/>
@@ -64,7 +65,14 @@
             <field name="model">open_academy.course</field>
             <field name="arch" type="xml">
                 <search>
+                    <field name="name"/>
                     <field name="description"/>
+                    <filter name="my_courses" string="Mis cursos"
+                        domain="[('responsible_id', '=', uid)]"/>
+                    <group string="Group By">
+                        <filter name="by_responsible" string="Responsible"
+                            context="{'group_by': 'responsible_id'}"/>
+                    </group>
                 </search>
             </field>
         </record> 
@@ -136,11 +144,23 @@
 
         <!-- Session View action-->
 
+        <record model="ir.ui.view" id="session_gantt_view">
+            <field name="name">session.gantt</field>
+            <field name="model">open_academy.session</field>
+            <field name="arch" type="xml">
+                <gantt string="Session Gantt"
+                       date_start="start_date" date_delay="hours"
+                       default_group_by='instructor_id'>
+                    <!-- <field name="name"/> this is not required after Odoo 10.0 -->
+                </gantt>
+            </field>
+        </record>
+
 
         <record model="ir.actions.act_window" id="session_list_action">
             <field name="name">Sessions</field>
             <field name="res_model">open_academy.session</field>
-            <field name="view_mode">tree,form,calendar</field>
+            <field name="view_mode">tree,form,calendar,gantt</field>
         </record>
 
         <menuitem id="session_menu" name="Sessions" parent="menu_open_academy" action="session_list_action"/>
