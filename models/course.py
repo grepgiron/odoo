@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions
 
 
 class Course(models.Model):
@@ -15,6 +15,29 @@ class Course(models.Model):
         ondelete='set null', string="Responsible", index=True)
     session_ids = fields.One2many(
         'open_academy.session', 'course_id', string="Sessions")
+    
+    def copy(self, default=None):
+        default = dict(default or {})
+
+        copied_count = self.search_count(
+            [('name', '=like', u"Copy of {}%".format(self.name))])
+        if not copied_count:
+            new_name = u"Copy of {}".format(self.name)
+        else:
+            new_name = u"Copy of {} ({})".format(self.name, copied_count)
+
+        default['name'] = new_name
+        return super(Course, self).copy(default)
+    
+    _sql_constraints = [
+        ('name_description_check',
+         'CHECK(name != description)',
+         "El título del curso no puede ser igual al nombre del curso"),
+
+        ('name_unique',
+         'UNIQUE(name)',
+         "El curso debe ser único"),
+    ]
 
 class Session(models.Model):
     _name = 'open_academy.session'
@@ -42,6 +65,7 @@ class Session(models.Model):
                 r.taken_seats = 0.0
             else:
                 r.taken_seats = 100.0 * len(r.attendee_ids) / r.seats
+    
     @api.onchange('seats', 'attendee_ids')
     def _verify_valid_seats(self):
         if self.seats < 0:
@@ -58,3 +82,9 @@ class Session(models.Model):
                     'message': "incremebte el numero de asientos o elimine los asistentes",
                 },
             }
+
+    @api.constrains('instructor_id', 'attendee_ids')
+    def _check_instructor_not_in_attendees(self):
+        for r in self:
+            if r.instructor_id and r.instructor_id in r.attendee_ids:
+                raise exceptions.ValidationError("una sesion no puede ser impartida por el instructor")
