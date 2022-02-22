@@ -1,7 +1,7 @@
 from odoo import models, fields, api
 
 class Session(models.Model):
-    _name = 'openacademy.session'
+    _name = 'open_academy.session'
     _description = "OpenAcademy Sessions"
 
     name = fields.Char(required=True)
