@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
+    <data>
         <!-- Course View -->
         <record model="ir.ui.view" id="course_form_view">
             <field name="name">course.form</field>
-            <field name="model">openacademy.course</field>
+            <field name="model">open_academy.course</field>
             <field name="arch" type="xml">
                 <form string="Course Form">
                     <sheet>
@@ -15,6 +15,9 @@
                         <notebook>
                             <page string = "Desciption">
                                 <field name="description"/>
+                            </page>
+                            <page string = "Title">
+                                <field name="title"/>
                             </page>
                         </notebook>
                     </sheet>
@@ -36,42 +39,12 @@
 
         <record model="ir.ui.view" id="course_search_view">
             <field name="name">course.search</field>
-            <field name="model">openacademy.course</field>
+            <field name="model">open_academy.course</field>
             <field name="arch" type="xml">
                 <search>
                     <field name="description"/>
                 </search>
             </field>
-        </record>
-
-        <!-- Session View-->
-
-        <record model="ir.ui.view" id="session_from_view">
-            <field name="name">session.form</field>
-            <field name="model">openacademy.session</field>
-            <field name="arch" type="xml">
-                <form string="Session From">
-                    <sheet>
-                        <group>
-                            <group string="General">
-                                <field name="name"/>
-                                <field name="course_id"/>
-                                <field name="instructor_id"/>
-                                <field name="active"/>
-                            </group>
-                            <group string="Schedule">
-                                <field name="start_date"/>
-                                <field name="duration"/>
-                                <field name="seats"/>
-                                <field name="taken_seats" widget="progressbar"/>
-                            </group>
-                        </group>
-                        <label for="attendee_ids"/>
-                        <field name="attendee_ids"/>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-    
-
+        </record>   
+    </data>
 </odoo>
