@@ -9,19 +9,23 @@ Industria del Software, Elaboracion de modulo
 - Tree views
 - Form views
 - Search views
-"insertar aqui las primeras gif"
+
+![](https://thumbs.gfycat.com/CheeryPlayfulBittern-size_restricted.gif)
 
 ### Ejercicios Relacion entre modulos
 - Modulo Sesiones
 - Relacion Sesiones y Curso
-"insertar aqui las primeras gif e imagenes"
 
-### Ejercicios Restricciones y inclusiones SQL
-"insertar aqui las primeras gif e imagenes"
+![](https://thumbs.gfycat.com/UnrealisticCheapDesertpupfish-size_restricted.gif)
+
+### Ejercicios Categorias, Niveles
+![](https://thumbs.gfycat.com/QuarrelsomeBrownClam-size_restricted.gif)
 
 ### Ejercicios Vistas avanzadas: 
 - Chart
 - Calendar
 - Graph
 - Kanban
-"insertar aqui las primeras gif e imagenes"
+
+![](https://thumbs.gfycat.com/BothFancyHornedviper-size_restricted.gif)
+
